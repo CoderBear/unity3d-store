@@ -14,7 +14,7 @@ namespace com.soomla.unity.example {
 		}
 		
 	    public VirtualGood[] GetGoods() {
-			return new VirtualGood[] {MUFFINCAKE_GOOD, PAVLOVA_GOOD,CHOCLATECAKE_GOOD, CREAMCUP_GOOD};
+			return new VirtualGood[] {MUFFINCAKE_GOOD, PAVLOVA_GOOD,CHOCLATECAKE_GOOD, CREAMCUP_GOOD, CREAMCUP_UPGRADE, CHEFS_CAP};
 		}
 		
 	    public VirtualCurrencyPack[] GetCurrencyPacks() {
@@ -42,7 +42,9 @@ namespace com.soomla.unity.example {
 	    public const string PAVLOVA_ITEM_ID   = "pavlova";
 	    public const string CHOCLATECAKE_ITEM_ID   = "chocolate_cake";
 	    public const string CREAMCUP_ITEM_ID   = "cream_cup";
-
+		
+		public const string CREAMCUP_UPGRADE_ITEM_ID = "cream_cup_upgrade";
+		public const string CHEFS_CAP_EQUIPABLE_ITEM_ID = "chefs_cap";
 	
 	    /** Virtual Currencies **/
 	    public static VirtualCurrency MUFFIN_CURRENCY = new VirtualCurrency(
@@ -117,13 +119,17 @@ namespace com.soomla.unity.example {
 	            "cream_cup",                                        // item id
 	            new PurchaseWithVirtualItem(MUFFIN_CURRENCY_ITEM_ID, 50));  // the way this virtual good is purchased
 		
+		public static VirtualGood CREAMCUP_UPGRADE = new UpgradeVG("cream_cup", "", "cream_cup",
+			CREAMCUP_GOOD.Name, "Further Increasy Bakery Reputatiom","cream_cup_upgrade",
+			new PurchaseWithVirtualItem(MUFFIN_CURRENCY_ITEM_ID, 100));
 		
 	    /** Virtual Categories **/
 	    // The muffin rush theme doesn't support categories, so we just put everything under a general category.
 	    public static VirtualCategory GENERAL_CATEGORY = new VirtualCategory(
-	            "General", new List<string>(new string[] { MUFFINCAKE_ITEM_ID, PAVLOVA_ITEM_ID, CHOCLATECAKE_ITEM_ID, CREAMCUP_ITEM_ID })
+	            "General", new List<string>(new string[] { MUFFINCAKE_ITEM_ID, PAVLOVA_ITEM_ID, CHOCLATECAKE_ITEM_ID, CREAMCUP_ITEM_ID, CREAMCUP_UPGRADE_ITEM_ID, CHEFS_CAP_EQUIPABLE_ITEM_ID })
 	    );
 		
+		public static VirtualGood CHEFS_CAP = new EquippableVG (EquippableVG.EquippingModel.GLOBAL, "Chef's Cap", "Double Customer's Satisfaction", "chefs_cap", new PurchaseWithVirtualItem(MUFFIN_CURRENCY_ITEM_ID, 500));
 		
 	    /** Google MANAGED Items **/
 	
